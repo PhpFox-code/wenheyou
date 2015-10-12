@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Pragma" content="no-cache">
+<title>收货地址</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<link href="../css/base.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<form action="" method="post">
+    <div class="new_address">
+    	<dl class="base_dl">
+    		<dt><h1>编辑地址</h1></dt>
+    		<dd>
+		    	<ul class="base_list">
+		    		<li>
+		    			<label><h5>联系人</h5></label>
+		    			<input class="get_name" name="user_name" type="text">
+		    		</li>
+		    		<li>
+		    			<label><h5>联系电话</h5></label>
+		    			<input class="get_phone" name="user_mobile" type="text" value="">
+		    		</li>
+		    		<li>
+		    			<label><h5>配送区域</h5></label>
+						<select name="address_area" class="get_place">
+							<option value="">请选择区域</option>
+						  	<option value="开福区">开福区</option>
+						 	<option value="雨花区">雨花区</option>
+						  	<option value="天心区">天心区</option>
+						  	<option value="岳麓区">岳麓区</option>
+						  	<option value="芙蓉区">芙蓉区</option>
+						  	<option value="其它区域">其它区域</option>
+						</select>
+		    		</li>
+		    		<li>
+		    			<label><h5>联系地址</h5></label>
+						<textarea name="address_street" class="get_place_detail" rows="2"></textarea>
+		    		</li>
+		    	</ul>
+		    </dd>
+	    </dl>
+	    <div class="button_n">
+	    	<button type="submit">确认保存</button>
+	    	<a class="delete" href="javascript:;">删&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp除</a>
+	    </div>
+    </div>
+</form>
+<script type="text/javascript">
+$(".button_n button").on("click",function(){
+			var user_mobile    = $('input[name="user_mobile"]').val();
+	      if(!(/^1[3|5|7|8]\d{9}$/.test(user_mobile))) {
+	        alert(1);
+	        return false;
+	      }
+		});
+	$("form").on("submit",function(){
+			
+				Cute.api.post("/address/save", $(this).serialize(), function(data){
+					if (data.code == 0) {
+						alert('保存成功！');
+						location.href="/address/index";
+					}else{
+						alert(data.message);
+					}
+				},'json');
+				return false;
+				
+			});
+	$(".delete").on("click",function(){
+		$.ajax({
+			url:"/address/delete",
+			type:"post",
+			data:"id",
+			dataType:"json",
+			success:function(data){
+				if (data.code == 0) {
+					location.href="/address/index";
+				}else{
+					alert(data.message);
+				};
+			}
+		});
+		return false;
+	});
+</script>
+</body>
+</html>

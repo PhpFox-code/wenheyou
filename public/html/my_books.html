@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Pragma" content="no-cache">
+<title>我的订单</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/prefixfree.js"></script>
+<script type="text/javascript" src="../js/require.js"></script>
+<link href="../css/base.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<script>
+        requirejs.config({
+            appDir: '/',
+            baseUrl: "/mobile/js",  //如果是pc版本请替换mobile为web
+            urlArgs: "ver=" + (new Date().getTime()),       //若正式环境请删除该行
+            paths: {
+                'jquery': 'http://upcdn.b0.upaiyun.com/libs/jquery/jquery-1.10.2.min',
+                'cute': 'cute',
+                'template': 'core/template',
+                'form': 'core/form',
+                'dialog': 'ui/dialog',
+                'select': 'ui/select',
+                'tabs': 'ui/tabs',
+                'swiper': '../js/swiper.jquery.min'
+            },
+            map:{
+                '*': {
+                    'css': 'core/css'
+                }
+            },
+            skipDataMain: true,
+            waitSeconds: 15,
+            shim: {
+                'cute': ['jquery'],
+                'common': {
+                    deps: ['cute']
+                },
+                'swiper': {
+                    deps: [
+                    'jquery',
+                    'css!plugin/swiper/swiper.css',
+                    ]
+                }
+            },
+            deps: ['init'],
+            callback: function(){
+                TKJ.config = $.extend(TKJ.config,{
+                    SITEURL: "http://wx.zhonghuilv.com",
+                    SITENAME: "中惠旅",
+                    COOKIEPRE: "zhl_",
+                    UPLOAD: "/upload"
+                });
+                Cute.Class.namespace("TKJ.user");
+                TKJ.user.info = {
+                    user_id: parseInt("123") || 0,
+                    nickname: '特伦C',
+                    face_url: '/upload/user_face/xxx.jpg'
+                };
+            }
+        });
+    </script>
+</head>
+<body>
+<form action="">
+	<div class="my_books_content">
+		<ul class="base_goods_list my_books">
+			<li>
+            <a href="">
+				<div class="goods">
+    				<img src="../images/books_goods01.jpg">
+    				<div class="goods_detail">
+    					<h2>订单号：NO245678</h2>
+    					<div class="goods_level">
+    						<span class="order_cash">待支付（现金支付）</span>
+                            <!-- <span class="order_cash">待支付（微信支付）</span> -->
+                            <!-- <span class="order_payed">订单已确认</span> -->
+                            <!-- <span class="order_waiting">待确认</span> -->
+                            <!-- <span class="order_sending">配送中</span> -->
+                            <!-- <span class="order_done">已送达</span> -->
+    						<h4>￥89.0</h4>
+    					</div>
+    					<div class="goods_price">
+    						<h2>2015-08-16 12:00:12</h2>
+    					</div>
+    				</div>
+    			</div></a>
+			</li>
+			<li>
+            <a href="">
+				<div class="goods my_books">
+    				<img src="../images/books_goods01.jpg">
+    				<div class="goods_detail">
+    					<h2>订单号：NO245678</h2>
+    					<div class="goods_level">
+    						<span class="order_cash">待支付（微信支付）</span>
+    						<h4>￥89.0</h4>
+    					</div>
+    					<div class="goods_price">
+    						<h2>2015-08-16 12:00:12</h2>
+    					</div>
+    				</div>
+    			</div></a>
+			</li>
+			<li>
+            <a href="">
+				<div class="goods my_books">
+    				<img src="../images/books_goods01.jpg">
+    				<div class="goods_detail">
+    					<h2>订单号：NO245678</h2>
+    					<div class="goods_level books_state">
+    						<span class="order_payed">订单已确认</span>
+    						<h4>￥89.0</h4>
+    					</div>
+    					<div class="goods_price">
+    						<h2>2015-08-16 12:00:12</h2>
+    					</div>
+    				</div>
+    			</div></a>
+			</li>
+			<li>
+            <a href="">
+				<div class="goods my_books">
+    				<img src="../images/books_goods01.jpg">
+    				<div class="goods_detail">
+    					<h2>订单号：NO245678</h2>
+    					<div class="goods_level">
+    						<span class="order_waiting">待确认</span>
+    						<h4>￥89.0</h4>
+    					</div>
+    					<div class="goods_price">
+    						<h2>2015-08-16 12:00:12</h2>
+    					</div>
+    				</div>
+    			</div></a>
+			</li>
+			<li>
+            <a href="">
+				<div class="goods my_books">
+    				<img src="../images/books_goods01.jpg">
+    				<div class="goods_detail">
+    					<h2>订单号：NO245678</h2>
+    					<div class="goods_level">
+    						<span class="order_sending">配送中</span>
+    						<h4>￥189.0</h4>
+    					</div>
+    					<div class="goods_price">
+    						<h2>2015-08-16 12:00:12</h2>
+    					</div>
+    				</div>
+    			</div>
+			</li></a>
+			<li class="books_end">
+            <a href="">
+				<div class="goods my_books">
+    				<img src="../images/books_goods01.jpg">
+    				<div class="goods_detail">
+    					<h2>订单号：NO245678</h2>
+    					<div class="goods_level books_state">
+    						<span class="order_done">已送达</span>
+    						<h4>￥189.0</h4>
+    					</div>
+    					<div class="goods_price">
+    						<h2>2015-08-16 12:00:12</h2>
+    					</div>
+    				</div>
+    			</div>
+            </a>
+			</li>
+		</ul>
+	</div>
+</form>
+<script type="text/javascript">
+        require(['init'], function(){
+            var next_page = 1;
+            $('.pager a').on('click', function(e){
+                var that = this;
+                var cb = arguments.callee;
+                $(this).off('click').text('努力加载中...');
+                Cute.api.get('/mobile/main/part',{page:next_page, store:'all', sort:'0'}, function(json){
+                    if(json.message == ''){
+                        $("#goodsList").append(json.data);
+                        $(that).on('click', cb).text('点击查看更多');
+                    }else{
+                        $(that).text(json.message);
+                    }
+                    next_page++;
+                });
+            }).trigger('click');
+        });
+    </script>
+</body>
+</html>
